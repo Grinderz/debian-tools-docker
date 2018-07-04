@@ -1,3 +1,11 @@
+## Build
+
+```bash
+$ docker build -t varch/debian-tools-docker .
+$ docker push varch/debian-tools-docker
+
+```
+
 ## Usage
 
 ```bash

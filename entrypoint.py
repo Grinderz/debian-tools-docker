@@ -4,7 +4,7 @@ import sys
 import logging
 import subprocess
 
-__author__ = u"tony <frimen.c@gmail.com>"
+__author__ = u"tony <grinderz@protonmail.com>"
 
 logging.basicConfig(format='%(asctime)s %(message)s')
 
@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     os.chdir(VOL_DATA)
     if MODE == "GENERATE_REPO":
-        subprocess.check_call(["/bin/bash", "-c", "dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz"])
+        subprocess.check_call(["/bin/bash", "-c", "dpkg-scanpackages -m . /dev/null | gzip -9c > Packages.gz"])
     else:
         logging.error("unknown MODE")
         sys.exit(1)

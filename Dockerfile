@@ -1,12 +1,16 @@
 FROM debian:latest
 
-LABEL Description="debian tools" Vendor="VARCH" Version="1.0" \
-    org.label-schema.vcs-url="https://github.com/Grinderz/debian-tools-docker.git"
+LABEL   description="debian tools" \
+        vendor="VARCH" \
+        version="1.1.0" \
+        vcs-url="https://github.com/grinderz/debian-tools-docker.git" \
+        docker.cmd="docker run --rm -it -v /home/user/data:/data varch/debian-tools-docker"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python \
-    dpkg-dev \
-    && rm -rf /var/lib/apt/lists/*
+    dpkg-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV MODE GENERATE_REPO
 VOLUME /data
@@ -14,4 +18,3 @@ VOLUME /data
 ADD entrypoint.py .
 
 ENTRYPOINT [ "python", "entrypoint.py" ]
-
